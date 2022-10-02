@@ -1,0 +1,16 @@
+.comments-container {
+  margin: 1.6rem auto 0 auto;
+  padding: 0.8rem 1.6rem;
+  border-top: 2px solid #eee;
+
+  /* width: 95%; */
+}
+
+h2 {
+  margin-bottom: 0.8rem;
+}
+
+.comments {
+  margin-top: 1.2rem;
+  list-style: none;
+}

@@ -1,0 +1,19 @@
+.author {
+  color: var(--primary-color);
+  margin-bottom: 0.4rem;
+}
+
+.comment-card {
+  padding: 1.2rem;
+  margin-bottom: 1.6rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background-color: white;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.text {
+  font-size: 1.6rem;
+}
