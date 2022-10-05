@@ -32,7 +32,11 @@ body {
 .focused {
   font-size: 3rem;
   font-weight: bold;
-  color: white;
+  color: black;
+}
+
+.title {
+  font-size: 2.4rem;
 }
 
 .btn {
@@ -49,20 +53,17 @@ body {
 .btn:active {
   background-color: rgb(36, 68, 212);
 }
-/* 
-.btn--flat {
-  cursor: pointer;
-  font: inherit;
-  color: teal;
-  border: none;
-  background-color: none;
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+
+.error {
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgb(253, 109, 109);
 }
 
-.btn--flat:hover,
-.btn--flat:active {
-  background-color: teal;
-  color: white;
-} */
+.message {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 2.4rem;
+}

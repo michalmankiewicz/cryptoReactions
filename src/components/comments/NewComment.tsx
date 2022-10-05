@@ -33,7 +33,6 @@ const NewComment = () => {
 
     dispatch(sendNewComments({ newComment, reactionId }));
 
-    console.log(enteredText, username, userId);
     textInputRef.current!.value = "";
   };
 
@@ -44,7 +43,7 @@ const NewComment = () => {
 
         <button className="btn">POST</button>
       </form>
-      {textError && <p className={classes.error}>Comment can not be empty!</p>}
+      {textError && <p className="error">Comment can not be empty!</p>}
       {!isAuth && (
         <div className={classes["login-overlay"]}>
           <Link to="/login" className={`btn ${classes.login}`}>

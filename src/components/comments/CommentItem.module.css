@@ -1,8 +1,20 @@
-.author {
-  color: var(--primary-color);
-  margin-bottom: 0.4rem;
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 0.8rem 0.4rem 0.8rem;
 }
 
+.author {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin: 0;
+}
+
+.release {
+  color: #aaa;
+  font-size: 1.2rem;
+}
 .comment-card {
   padding: 1.2rem;
   margin-bottom: 1.6rem;

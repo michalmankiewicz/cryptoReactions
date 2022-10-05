@@ -9,8 +9,6 @@ export const fetchComments = createAsyncThunk(
     );
     const data = await response.json();
 
-    console.log(data);
-
     return data;
   }
 );
@@ -32,8 +30,6 @@ export const sendNewComments = createAsyncThunk(
       }
     );
     const data = await response.json();
-
-    console.log(data);
 
     return commentData.newComment;
   }

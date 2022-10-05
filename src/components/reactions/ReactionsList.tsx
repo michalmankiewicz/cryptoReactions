@@ -1,18 +1,28 @@
 import ReactionItem from "./ReactionItem";
 import classes from "./ReactionsList.module.css";
 import NewReaction from "./NewReaction";
-import { Fragment, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/typed-hooks";
-import { fetchReactions } from "../../store/reactions/reaction-thunk";
+import { Fragment } from "react";
+import { useAppSelector } from "../../store/typed-hooks";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import Reaction from "../../model/Reaction";
+import Filters from "../filters/Filters";
+import { useLocation } from "react-router-dom";
 
 const ReactionsList = () => {
-  const reactions = useAppSelector((state) => state.reactions.reactions);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const filter = queryParams.get("filter") || "All";
 
+  const reactions = useAppSelector((state) => state.reactions.reactions);
   const fetchingStatus = useAppSelector((state) => state.reactions.status);
 
-  const sortedReactions = [...reactions].sort((a, b) => {
+  let filteredReactions;
+  if (filter !== "All") {
+    filteredReactions = reactions.filter(
+      (reaction) => reaction.crypto === filter
+    );
+  } else filteredReactions = reactions;
+
+  const sortedReactions = [...filteredReactions].sort((a, b) => {
     const timeA = new Date(a.date).getTime();
     const timeB = new Date(b.date).getTime();
 
@@ -22,6 +32,7 @@ const ReactionsList = () => {
   return (
     <Fragment>
       <NewReaction />
+      <Filters filter={filter} />
 
       <ul className={classes.list}>
         {fetchingStatus === "pending" ? (

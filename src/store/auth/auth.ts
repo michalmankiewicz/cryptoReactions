@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "phosphor-react";
-import { sendNewUserData, fetchUserData } from "./auth-thunk";
+import { sendNewUserData, fetchUserData, changePassword } from "./auth-thunk";
 
 type User = {
   username: string;
@@ -73,6 +73,17 @@ const authSlice = createSlice({
         localStorage.setItem("loggedUser", JSON.stringify(state.loggedUser));
       })
       .addCase(fetchUserData.rejected, (state, action) => {
+        state.status = "error";
+        state.errorMessage = action.error.message?.replace("_", " ") || "";
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.status = "fullfilled";
+        state.loggedUser.token = action.payload.idToken;
+      })
+      .addCase(changePassword.pending, (state) => {
+        state.status = "pending";
+      })
+      .addCase(changePassword.rejected, (state, action) => {
         state.status = "error";
         state.errorMessage = action.error.message?.replace("_", " ") || "";
       });

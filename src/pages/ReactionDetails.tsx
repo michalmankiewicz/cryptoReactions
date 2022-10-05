@@ -1,34 +1,43 @@
 import ReactionItem from "../components/reactions/ReactionItem";
 import CommentsList from "../components/comments/CommentsList";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { useAppSelector } from "../store/typed-hooks";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
-import NewComment from "../components/comments/NewComment";
+import { useParams, useNavigate } from "react-router-dom";
 
 const ReactionDetails = () => {
-  const chosenReaction = useAppSelector((state) => state.reactions.reactions);
+  const navigate = useNavigate();
+  const reactions = useAppSelector((state) => state.reactions.reactions);
+  const params = useParams();
+  const { reactionId } = params;
   const reactionsFetchingStatus = useAppSelector(
     (state) => state.reactions.status
   );
 
-  const id = "0.7825971060012058";
+  const chosenReaction = reactions.find(
+    (reaction) => reaction.id === Number(reactionId)
+  );
+
+  if (!chosenReaction) {
+    navigate("/not-found");
+  }
 
   return (
     <Fragment>
-      {reactionsFetchingStatus === "fullfilled" && (
+      {reactionsFetchingStatus === "fullfilled" && chosenReaction && (
         <ReactionItem
-          key={chosenReaction[0].id}
-          id={chosenReaction[0].id}
-          authorId={chosenReaction[0].authorId}
-          date={chosenReaction[0].date}
-          crypto={chosenReaction[0].crypto}
-          price={chosenReaction[0].price}
-          author={chosenReaction[0].author}
-          text={chosenReaction[0].text}
+          key={chosenReaction.id}
+          id={chosenReaction.id}
+          authorId={chosenReaction.authorId}
+          date={chosenReaction.date}
+          crypto={chosenReaction.crypto}
+          price={chosenReaction.price}
+          author={chosenReaction.author}
+          text={chosenReaction.text}
         />
       )}
-
       {reactionsFetchingStatus === "pending" && <LoadingSpinner />}
+
       <CommentsList />
     </Fragment>
   );

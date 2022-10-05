@@ -21,7 +21,12 @@ const CommentsSlice = createSlice({
       })
       .addCase(fetchComments.fulfilled, (state, { payload }) => {
         state.status = "fullfilled";
-        state.comments = Object.keys(payload).map((key) => payload[key]);
+        state.comments = payload
+          ? Object.keys(payload).map((key) => payload[key])
+          : [];
+      })
+      .addCase(fetchComments.rejected, (state) => {
+        state.status = "error";
       })
       .addCase(sendNewComments.pending, (state) => {
         state.status = "pending";
@@ -29,6 +34,9 @@ const CommentsSlice = createSlice({
       .addCase(sendNewComments.fulfilled, (state, { payload }) => {
         state.status = "fullfilled";
         state.comments.unshift(payload);
+      })
+      .addCase(sendNewComments.rejected, (state) => {
+        state.status = "error";
       });
   },
 });

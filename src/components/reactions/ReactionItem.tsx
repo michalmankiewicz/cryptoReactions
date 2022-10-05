@@ -25,19 +25,26 @@ const ReactionItem = (props: ReactionProp) => {
 
   const params = useParams();
   const { reactionId } = params;
-  console.log(reactionId);
 
   return (
     <Card>
       <figure className={classes.reaction}>
         <figcaption className={classes.title}>
-          <span className={classes.author}>{props.author}</span> on $
-          {props.crypto}
+          <div className={classes.author}>{props.author}</div>
+          <div className={classes["title-text"]}>on ${props.crypto}</div>
+          <img
+            src={`../assets/${props.crypto}.svg`}
+            className={classes["crypto-icon"]}
+            alt={`${props.crypto} coin`}
+          />
         </figcaption>
         <blockquote className={classes.text}>{props.text}</blockquote>
         <div className={classes["more-info"]}>
           {reactionId === undefined && (
-            <Link to={props.id.toString()} className={classes.comments}>
+            <Link
+              to={`../reactions/${props.id.toString()}`}
+              className={classes.comments}
+            >
               <ChatCircleDots className={classes.icon} /> <span>Comments</span>
             </Link>
           )}

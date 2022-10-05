@@ -2,13 +2,28 @@
   width: 100%;
 }
 .title {
+  width: 100%;
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
 }
 
 .title .author {
   color: var(--primary-color);
+  margin-right: 0.4rem;
+}
+
+.title-text {
+  margin-right: 0.4rem;
+}
+
+.crypto-icon {
+  margin-left: auto;
+  margin-right: 0;
+  height: 2.4rem;
+  filter: grayscale(0.4);
 }
 
 .text {
@@ -19,7 +34,7 @@
 
 .more-info {
   display: grid;
-  grid-template: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
 }
 
@@ -46,8 +61,9 @@
 }
 
 .date {
+  align-self: flex-end;
+  justify-self: end;
   grid-column: 2;
   color: #aaa;
   font-size: 1.2rem;
-  margin-left: auto;
 }

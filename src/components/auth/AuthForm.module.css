@@ -74,13 +74,6 @@ input.error {
   background-color: rgb(252, 206, 206);
 }
 
-.error {
-  margin-top: 0.4rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: rgb(253, 109, 109);
-}
-
 .login-overlay {
   position: absolute;
   top: 0;
@@ -93,5 +86,4 @@ input.error {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* display: none; */
 }

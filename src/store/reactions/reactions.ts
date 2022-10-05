@@ -2,15 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import Reaction from "../../model/Reaction";
 import { fetchReactions, addReaction } from "./reaction-thunk";
 
-// type reaction = {
-//   author: string;
-//   authorId: string;
-//   crypto: string;
-//   date: string;
-//   id: number;
-//   price: number;
-//   text: string;
-// };
 const initialReactionsState: { reactions: Reaction[]; status: string } = {
   reactions: [],
   status: "",

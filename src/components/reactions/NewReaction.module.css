@@ -4,7 +4,6 @@
 
 .input {
   width: 100%;
-
   border-radius: 5px;
   font-size: 1.6rem;
   padding: 0.8rem 1.2rem;
@@ -43,16 +42,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* display: none; */
 }
 
 .login {
   font-size: 1.6rem;
-}
-
-.error {
-  margin-top: 0.4rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: rgb(253, 109, 109);
 }

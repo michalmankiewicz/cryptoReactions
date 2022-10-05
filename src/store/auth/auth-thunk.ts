@@ -20,16 +20,14 @@ export const sendNewUserData = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
     };
 
-    console.log(userData);
-
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
-    console.log(url);
-    const response = await fetch(url, config);
-    console.log(response.json());
 
-    if (!response.ok) throw new Error();
+    const response = await fetch(url, config);
 
     const data = await response.json();
+
+    if (!response.ok) throw new Error(data.error.message);
+
     return data;
   }
 );
@@ -48,12 +46,38 @@ export const fetchUserData = createAsyncThunk(
     };
 
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
-    console.log(url);
+
     const response = await fetch(url, config);
 
     const data = await response.json();
-    console.log(data);
 
+    if (!response.ok) throw new Error(data.error.message);
+
+    return data;
+  }
+);
+
+export const changePassword = createAsyncThunk(
+  "auth/changePassword",
+  async (newPasswordData: { token: string; newPassword: string }) => {
+    console.log(newPasswordData);
+
+    const config = {
+      method: "POST",
+      body: JSON.stringify({
+        idToken: newPasswordData.token,
+        password: newPasswordData.newPassword,
+        returnSecureToken: true,
+      }),
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const response = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${API_KEY}`,
+      config
+    );
+
+    const data = await response.json();
     if (!response.ok) throw new Error(data.error.message);
 
     return data;

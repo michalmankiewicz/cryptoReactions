@@ -28,14 +28,13 @@ const NewReaction = () => {
       authorId: userId,
       crypto: enteredCrypto,
       date: new Date().toISOString(),
-      id: Math.random(),
+      id: Math.round(Math.random() * 1000),
       price: 1234545,
       text: enteredText,
     };
 
     dispatch(addReaction(newReaction));
 
-    console.log(enteredText, enteredCrypto, username, userId);
     textInputRef.current!.value = "";
     cryptoInputRef.current!.value = "BTC";
   };
@@ -45,13 +44,11 @@ const NewReaction = () => {
       <form onSubmit={submitHandler}>
         <h2 className={classes.title}>Post your reaction</h2>
         <textarea className={classes.input} rows={3} ref={textInputRef} />
-        {textError && (
-          <p className={classes.error}>Reaction text can not be empty!</p>
-        )}
+        {textError && <p className="error">Reaction text can not be empty!</p>}
         <div className={classes.actions}>
           <select className={classes.cryptos} ref={cryptoInputRef}>
             {cryptos.map((crypto) => (
-              <option key={crypto} value={crypto}>
+              <option className={classes.crypto} key={crypto} value={crypto}>
                 {crypto}
               </option>
             ))}
